@@ -2,24 +2,24 @@ pipeline {
     agent any
 
     environment {
-        MAVEN_HOME = tool name: 'M3', type: 'maven' // Adjust based on your Maven setup in Jenkins
-        SONARQUBE_URL = 'http://your-sonarqube-server-url'
-        ARTIFACTORY_SERVER = 'your-artifactory-server-id'
-        TOMCAT_URL = 'http://your-tomcat-server-url/manager/text/deploy?path=/your-app&update=true'
+        MAVEN_HOME = tool name: 'M2', type: 'maven' // Adjust based on your Maven setup in Jenkins
+        SONARQUBE_URL = 'http://54.145.42.212:9000/'
+        ARTIFACTORY_SERVER = 'artifactory'
+        TOMCAT_URL = 'http://54.227.150.198:8080/manager/html/text/deploy?path=/App.java&update=true'
     }
 
     stages {
         stage('Checkout') {
             steps {
                 echo 'Checking out the code from Git...'
-                git branch: 'main', url: 'https://github.com/your-username/maven-tomcat-deployment.git'
+                git branch: 'main', url: 'https://github.com/Dadu777/maven-frog-sonar-tomcat.git'
             }
         }
 
         stage('Build with Maven') {
             steps {
                 echo 'Building the project using Maven...'
-                withMaven(maven: 'M3') {
+                withMaven(maven: 'M2') {
                     sh 'mvn clean install'
                 }
             }
